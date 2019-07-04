@@ -1,0 +1,27 @@
+This prototype application was used to gather results for the provided MARL paper which contains further details on the game and experiments conducted.
+It is mostly just interesting to look at since single player vs. ai game play has been left to future work.
+
+The game is simple, a turn based tactics game where units can attack and/or move on a grid within line of sight, a radius of movement speed + 1. Friendly fire is enabled to test the power of reinforcement learning. Units should learn not avoid attacking friendlies and to attack enemies. 
+A fog of war prevents units from seeing each other or enemies. Hard to win without coordination or sharing information between units.
+Oracle units share line of sight information between all friendly units.
+Cooperative units share line of sight information between a subset of friendly units.
+Independent units do not share any information.
+
+Each team starts off without prior learning enabled and must learn how to play over the number of rounds set. Larger team sizes playing a large number of rounds will show how information sharing effects the success of the ai.
+
+To run:
+$ java -classpath commons-lang3-3.4.jar:commons-math3-3.5.jar:mockito.jar:target/classes edu.osu.cse.marl.GameRunner <team1> <team2> <# of rounds>
+
+team1/team2 options: cooperative, independent, and oracle.
+Suggested: cooperative independent 1000
+
+Team option scripted is a deprecated option used to train ai and gather results. 
+
+GameOptions.java provides further options but must be changed in file:
+team size 	- number of units per team [default 3]
+board size 	- x by y dimensions of game board [default 5 by 8]
+turn limit 	- number of turns before game terminates if no clear winner [default 50] 
+turn speed 	- time [in milliseconds] each turn takes [default 100, only relevant if replay is false]
+replay 		- enables single turn play. Right button progresses readied team to take a single turn. Left button returns to the prior turn taken. [default false for autoplay]
+actionText 	- enables debug information of each unit's action. Mainly used for single turn play and intended for 3 units. [default false]
+autoHomogeneousState - determines if a unit uses similar states to determine action [default false]

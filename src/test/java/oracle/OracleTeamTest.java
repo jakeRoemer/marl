@@ -1,0 +1,14 @@
+package oracle;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class OracleTeamTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}
